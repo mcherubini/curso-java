@@ -5,10 +5,12 @@
  */
 package controladores;
 
+import dao.CochesDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ALUMNO
  */
-@WebServlet(name = "Controlador", urlPatterns = {"/controlador"})
 public class Controlador extends HttpServlet {
 
     /**
@@ -31,10 +32,14 @@ public class Controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Ejemplo de recogida de parametros
-        String nombre = request.getParameter("nombre");
-        request.setAttribute("nombreCliente", nombre);
-        request.getRequestDispatcher("salida.jsp").forward(request,response);
+        
+        String respuesta = (String) request.getAttribute("tipo");
+        CochesDao cDao = new CochesDao();
+       List<String> coches = cDao.recomendar(respuesta);
+       //List<String> coches = new ArrayList<String>();
+       coches.add("rgaga");
+        request.setAttribute("coches", coches);
+        request.getRequestDispatcher("resultado.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
