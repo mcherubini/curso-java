@@ -9,16 +9,20 @@ package modelo;
  *
  * @author ALUMNO
  */
-public class Cliente {
+public class Cerveza {
     
     private String nombre;
-    private String profesion;
-    private short edad;
+    private String descripcion;
     
-    public Cliente() {
-        
+    public Cerveza() {}
+
+    public Cerveza(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -27,20 +31,12 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getProfesion() {
-        return profesion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setProfesion(String profesion) {
-        this.profesion = profesion;
-    }
-
-    public short getEdad() {
-        return edad;
-    }
-
-    public void setEdad(short edad) {
-        this.edad = edad;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
     
